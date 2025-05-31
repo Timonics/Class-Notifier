@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Nav from "../components/nav";
 import FooterNav from "../components/footer-nav";
-import { useAuth } from "../hooks/useAuth";
 import { useEffect } from "react";
+import { useAuthStore } from "../store/authStore";
 
 export default function MainPageLayout() {
-  const { setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuthStore();
 
   //testing purposes
   useEffect(() => {

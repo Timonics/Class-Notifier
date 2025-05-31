@@ -1,13 +1,12 @@
 import { createContext, FC, useState } from "react";
 import { AppProp } from "../interfaces";
-import { CourseState } from "../interfaces/course.interfaces";
-import { Course } from "../types/courses";
+import { CourseContextProps, CoursesState } from "../interfaces/course.interfaces";
 
-export const CourseContext = createContext<CourseState | null>(null);
+export const CourseContext = createContext<CoursesState | null>(null);
 
 const CourseProvider: FC<AppProp> = ({ children }) => {
   //Storing registeredCourses state...(test purposes)
-  const [registeredCourses, setRegisteredCourses] = useState<Course[]>([]);
+  const [registeredCourses, setRegisteredCourses] = useState<CourseContextProps[]>([]);
 
   const getRegisteredCourses = async () => {
     //logic for fetching courses registered by user and setting state

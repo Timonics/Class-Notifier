@@ -3,6 +3,20 @@ export interface CourseState {
   setCourseData: (value: CourseData[]) => void;
 }
 
+export interface CourseContextProps {
+  courseCode: string;
+  courseName: string;
+  courseLecturer: string;
+  courseColorCode?: string;
+  lectureDateTime?: string
+}
+
+export interface CoursesState {
+  registeredCourses: CourseContextProps[];
+  setRegisteredCourses: React.Dispatch<React.SetStateAction<CourseContextProps[]>>
+  getRegisteredCourses: () => Promise<void>;
+}
+
 export interface CourseData {
   id: number;
   name: string;
