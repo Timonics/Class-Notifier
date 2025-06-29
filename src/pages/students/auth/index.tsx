@@ -5,7 +5,7 @@ import { FiUser } from "react-icons/fi";
 import { VscLockSmall } from "react-icons/vsc";
 import { useStudentAuth } from "../../../hooks/students/useAuth";
 import { useStudentAuthStore } from "../../../store/student/studentAuthStore";
-import StudentLoader from "../../../components/loader/studentsLoader";
+import Loader from "../../../components/loader";
 
 export default function AuthPage() {
   const { studentAuthIsLoading } = useStudentAuthStore();
@@ -175,7 +175,7 @@ export default function AuthPage() {
           </p>
         )}
       </div>
-      {studentAuthIsLoading && <StudentLoader />}
+      {studentAuthIsLoading && <Loader />}
     </section>
   );
 }
