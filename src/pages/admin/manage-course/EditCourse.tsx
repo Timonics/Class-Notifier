@@ -1,10 +1,10 @@
 import { TbX, TbHome, TbTrash } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { ChangeEvent, useState } from "react";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 import { RiSendPlaneFill } from "react-icons/ri";
-import { useCourses } from "../../../hooks/useCourses";
+import { useCourses } from "../../../hooks/admin/useCourses";
 
 export default function EditCourse({ courseId }: { courseId: number }) {
   const { editCourse} = useCourses();
@@ -57,7 +57,7 @@ export default function EditCourse({ courseId }: { courseId: number }) {
       </div>
       {isLoading && (
         <div className="bg-black/30 z-30 absolute inset-0">
-          <Loading />
+          <Loader />
         </div>
       )}
     </div>

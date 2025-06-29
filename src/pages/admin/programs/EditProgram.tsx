@@ -1,9 +1,9 @@
 import { TbX, TbHome, TbTrash } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { ChangeEvent, useState } from "react";
-import { useProgram } from "../../../hooks/useProgram";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
+import { useProgram } from "../../../hooks/admin/useProgram";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 import { RiSendPlaneFill } from "react-icons/ri";
 
 export default function EditProgram({ programId }: { programId: number }) {
@@ -57,7 +57,7 @@ export default function EditProgram({ programId }: { programId: number }) {
       </div>
       {isLoading && (
         <div className="bg-black/30 z-30 absolute inset-0">
-          <Loading />
+          <Loader />
         </div>
       )}
     </div>

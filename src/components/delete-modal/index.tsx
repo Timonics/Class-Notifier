@@ -1,7 +1,7 @@
 import { TbX, TbTrash } from "react-icons/tb";
 import Ripple from "../ripple";
-import { useLoadingStore } from "../../store/loadingStore";
-import Loading from "../loading";
+import { useLoadingStore } from "../../store/admin/loadingStore";
+import Loading from "../loader";
 
 export default function DeleteModal({
   type,
@@ -20,11 +20,7 @@ export default function DeleteModal({
     >
       <Ripple />
       <div className="space-y-4 z-20">
-        <TbX
-          size={20}
-          className="ml-auto cursor-pointer"
-          //onClick={() => institutionIsOpened(false)}
-        />
+        <TbX size={20} className="ml-auto cursor-pointer" />
         <div className="size-[40px] border-[2px] border-[#344054]/30 rounded-xl flex items-center justify-center">
           <TbTrash className="text-red-600" size={25} />
         </div>

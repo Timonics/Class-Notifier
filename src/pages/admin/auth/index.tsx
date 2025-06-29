@@ -1,10 +1,10 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import logo from "../../../assets/admin-class-notifier-logo.png";
 import { AdminLoginData } from "../../../types/auth";
-import { useAuth } from "../../../hooks/useAuth";
-import Loading from "../../../components/loading";
+import { useAuth } from "../../../hooks/admin/useAuth";
+import Loading from "../../../components/loader";
 import { Link } from "react-router-dom";
-import { useLoadingStore } from "../../../store/loadingStore";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 
 export default function AdminAuth() {
   const { adminLogin } = useAuth();

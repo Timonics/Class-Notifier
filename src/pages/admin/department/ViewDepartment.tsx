@@ -1,7 +1,7 @@
 import { TbX, TbEdit } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { useEffect } from "react";
-import { useDepartment } from "../../../hooks/useDepartment";
+import { useDepartment } from "../../../hooks/admin/useDepartment";
 
 export default function ViewDepartment({
   departmentId,
@@ -22,7 +22,6 @@ export default function ViewDepartment({
         <TbX
           size={20}
           className="ml-auto cursor-pointer"
-          //onClick={() => departmentIsOpened(false)}
         />
         <div className="size-[40px] border-[2px] border-[#344054]/30 rounded-xl flex items-center justify-center">
           <TbEdit className="text-blue-500" size={25} />

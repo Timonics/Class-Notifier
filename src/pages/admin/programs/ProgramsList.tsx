@@ -1,10 +1,10 @@
 import { TbEdit, TbEye, TbPlus, TbTrash } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import CreateNewProgram from "./CreateNewProgram";
-import { useProgramStore } from "../../../store/programStore";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
-import { useProgram } from "../../../hooks/useProgram";
+import { useProgramStore } from "../../../store/admin/programStore";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
+import { useProgram } from "../../../hooks/admin/useProgram";
 import DeleteModal from "../../../components/delete-modal";
 import EditProgram from "./EditProgram";
 
@@ -26,10 +26,11 @@ export default function ProgramsList() {
   const dataElements =
     programData.length !== 0 ? (
       programData.map((data) => (
-        <div className="border-b-2 font-medium text-[10px] border-gray-200 grid grid-cols-6 p-3 items-center">
+        <div className="border-b-2 font-medium text-[10px] border-gray-200 grid grid-cols-7 p-3 items-center">
           <div className="text-gray-950">{data.id}</div>
           <div className="text-blue-700">{data.name}</div>
-          <div className="text-blue-700">--</div>
+          <div className="text-blue-700">{data.courseCount}</div>
+          <div className="text-blue-700">{data.studentCount}</div>
           <button
             onClick={() => {
               setShowEditProgramIsOpen(true);
@@ -72,16 +73,17 @@ export default function ProgramsList() {
         </button>
       </div>
       <div className="flex flex-col border-2 rounded-lg border-gray-200">
-        <div className="grid grid-cols-6 font-medium text-xs p-3 border-b-2 border-gray-200 bg-gray-50 rounded-t-lg text-gray-600">
+        <div className="grid grid-cols-7 font-medium text-xs p-3 border-b-2 border-gray-200 bg-gray-50 rounded-t-lg text-gray-600">
           <p className="">ID</p>
           <p className="">Programs</p>
-          <p className="">Student</p>
+          <p className="">Course count</p>
+          <p>Student count</p>
           <p></p>
           <p></p>
           <p></p>
         </div>
         <div className="gap-2 relative">
-          {isLoading && <Loading />}
+          {isLoading && <Loader />}
           {dataElements}
         </div>
       </div>

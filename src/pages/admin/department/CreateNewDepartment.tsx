@@ -1,11 +1,11 @@
 import { TbHome, TbTrash, TbX } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useInstitutionStore } from "../../../store/institutionStore";
-import { useInstitution } from "../../../hooks/useInstitution";
-import { useLoadingStore } from "../../../store/loadingStore";
-import Loading from "../../../components/loading";
-import { useDepartment } from "../../../hooks/useDepartment";
+import { useInstitutionStore } from "../../../store/admin/institutionStore";
+import { useInstitution } from "../../../hooks/admin/useInstitution";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
+import Loader from "../../../components/loader";
+import { useDepartment } from "../../../hooks/admin/useDepartment";
 
 export default function CreateNewDepartment({
   departmentIsOpened,
@@ -49,8 +49,6 @@ export default function CreateNewDepartment({
     </div>
   ));
 
-  console.log(newDepartmentData);
-
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setNewDepartmentData((prevState) => ({
@@ -79,7 +77,7 @@ export default function CreateNewDepartment({
           {isLoading ? (
             <div className="flex flex-col w-full text-center">
               <div className=" relative h-[40px]">
-                <Loading />
+                <Loader />
               </div>
               <p className="poppins text-xs font-medium text-black/7-">
                 Loading Institutions...
@@ -107,11 +105,6 @@ export default function CreateNewDepartment({
           <p className="text-[10px] font-medium">Cancel</p>
         </div>
         <button
-          // disabled={
-          //   institutionData.length === 0 ||
-          //   !newDepartmentData.departmentName ||
-          //   newDepartmentData.institution_id === 0
-          // }
           className="flex disabled:bg-[#9B51E0]/50 bg-[#9B51E0] disabled:cursor-not-allowed gap-1 rounded-full items-center p-2 poppins justify-center text-white w-1/2"
           onClick={() => addDepartment(newDepartmentData)}
         >

@@ -4,7 +4,7 @@ import RecentUpcomingClass from "./RecentUpcomingClass";
 import Announcement from "./Announcement";
 
 export default function Dashboard() {
-  const a = dashConsts.map((item) => {
+  const dashNavs = dashConsts.map((item) => {
     const Icon = item.icon;
     return (
       <div
@@ -52,7 +52,7 @@ export default function Dashboard() {
             <p className="poppins text-xl font-semibold">405</p>
           </div>
         </div>
-        <div className="flex gap-2 w-full">{a}</div>
+        <div className="flex gap-2 w-full">{dashNavs}</div>
       </div>
       <div className="flex gap-4">
         <div className="w-3/5">

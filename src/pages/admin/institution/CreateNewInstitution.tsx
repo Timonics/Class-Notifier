@@ -3,9 +3,9 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { TbHome, TbTrash, TbX } from "react-icons/tb";
 import { institutionType } from "../../../constants/institutionType";
 import Ripple from "../../../components/ripple";
-import { useInstitution } from "../../../hooks/useInstitution";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
+import { useInstitution } from "../../../hooks/admin/useInstitution";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 
 export default function CreateNewInstitution({
   institutionIsOpened,
@@ -111,7 +111,7 @@ export default function CreateNewInstitution({
           <p className="text-[10px] font-medium">Publish</p>
         </button>
       </div>
-      {isLoading && <Loading />}
+      {isLoading && <Loader />}
     </div>
   );
 }

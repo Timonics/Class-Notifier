@@ -3,7 +3,7 @@ import { TbNotification } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import AnnouncementModal from "../announcement-modal";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "../../store/admin/authStore";
 
 export default function Nav() {
   const navigate = useNavigate();

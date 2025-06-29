@@ -1,7 +1,7 @@
 import { TbX, TbHome } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { useEffect } from "react";
-import { useInstitution } from "../../../hooks/useInstitution";
+import { useInstitution } from "../../../hooks/admin/useInstitution";
 
 export default function EditInstitution({
   institutionId,

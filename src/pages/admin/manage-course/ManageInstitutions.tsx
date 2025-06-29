@@ -1,10 +1,10 @@
 import { TbEdit, TbEye, TbPlus, TbTrash } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import CreateNewCourse from "./CreateCourse";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
-import { useCourses } from "../../../hooks/useCourses";
-import { useCourseStore } from "../../../store/courseStore";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
+import { useCourses } from "../../../hooks/admin/useCourses";
+import { useCourseStore } from "../../../store/admin/courseStore";
 import EditCourse from "./EditCourse";
 import DeleteModal from "../../../components/delete-modal";
 
@@ -100,7 +100,7 @@ export default function ManageInstitutions() {
           <p></p>
         </div>
         <div className="gap-2 relative">
-          {isLoading && <Loading />}
+          {isLoading && <Loader />}
           {dataElements}
         </div>
       </div>

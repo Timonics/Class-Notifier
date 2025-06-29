@@ -1,22 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import AppLayout from "../layout";
 import OnboardingLayout from "../layout/onboarding";
-import Home from "../pages/home";
-import AuthPage from "../pages/auth";
-import ResetPassword from "../pages/auth/reset-password";
-import UpdateProfilePage from "../pages/profile/updateProfile";
-import CustomizeClass from "../pages/classes/customizeClass";
-import AddRegisteredCourses from "../pages/courses/addRegisteredCourses";
+import Home from "../pages/students/home";
+import AuthPage from "../pages/students/auth";
+import ResetPassword from "../pages/students/auth/reset-password";
+import UpdateProfilePage from "../pages/students/profile/updateProfile";
+import CustomizeClass from "../pages/students/classes/customizeClass";
+import AddRegisteredCourses from "../pages/students/courses/addRegisteredCourses";
 import MainPageLayout from "../layout/mainPage";
-import ClassesPage from "../pages/classes";
-import ExamsPage from "../pages/exams";
-import AnnouncementPage from "../pages/announcements";
-import MainPage from "../pages/main";
-import LiveClasses from "../pages/live-classes";
-import Profile from "../pages/profile";
-import MyProfile from "../pages/profile/myProfile";
-import ChangeProgram from "../pages/changeOfProgram";
-import UpdatedRegisteredCourse from "../pages/courses/UpdatedRegisteredCourse";
+import ClassesPage from "../pages/students/classes";
+import ExamsPage from "../pages/students/exams";
+import AnnouncementPage from "../pages/students/announcements";
+import MainPage from "../pages/students/main";
+import LiveClasses from "../pages/students/live-classes";
+import Profile from "../pages/students/profile";
+import MyProfile from "../pages/students/profile/myProfile";
+import ChangeProgram from "../pages/students/changeOfProgram";
+import UpdatedRegisteredCourse from "../pages/students/courses/UpdatedRegisteredCourse";
 import AdminAuthLayout from "../layout/admin/AdminAuthLayout";
 import AdminAuth from "../pages/admin/auth";
 import AdminForgotPassword from "../pages/admin/auth/forgot-password";
@@ -40,7 +40,7 @@ import ManageInstitutions from "../pages/admin/manage-course/ManageInstitutions"
 import ClassManagement from "../pages/admin/class-management";
 import ScheduledClasses from "../pages/admin/class-management/ScheduledClasses";
 import ClassAnnouncements from "../pages/admin/class-management/ClassAnnouncements";
-import { ProtectedRoute, RedirectRoute } from "./AdminProtectedRoutes";
+import { AdminProtectedRoute, AdminRedirectRoute } from "./AdminProtectedRoutes";
 import Faculties from "../pages/admin/faculty/Faculties";
 import Faculty from "../pages/admin/faculty/Faculty";
 
@@ -52,7 +52,7 @@ export default function AllRoutes() {
           <Route path="/auth/reset-password" element={<ResetPassword />} />
         </Route>
 
-        <Route element={<RedirectRoute />}>
+        <Route element={<AdminRedirectRoute />}>
           <Route path="admin/auth" element={<AdminAuthLayout />}>
             <Route path="" element={<AdminAuth />} />
             <Route path="forgot-password" element={<AdminForgotPassword />} />
@@ -67,7 +67,7 @@ export default function AllRoutes() {
             />
           </Route>
         </Route>
-        <Route element={<ProtectedRoute />}>
+        <Route element={<AdminProtectedRoute />}>
           <Route path="admin/" element={<AdminDashboardLayout />}>
             <Route path="" element={<Dashboard />} />
             <Route path="institution" element={<Institution />}>

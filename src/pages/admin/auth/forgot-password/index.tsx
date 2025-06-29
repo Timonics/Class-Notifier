@@ -1,11 +1,11 @@
 import { ChangeEvent, useState } from "react";
 import { TbArrowLeft, TbKey } from "react-icons/tb";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../../../../store/authStore";
+import { useAuthStore } from "../../../../store/admin/authStore";
 import { ResetEmail } from "../../../../types/auth";
-import { useAuth } from "../../../../hooks/useAuth";
-import Loading from "../../../../components/loading";
-import { useLoadingStore } from "../../../../store/loadingStore";
+import { useAuth } from "../../../../hooks/admin/useAuth";
+import Loading from "../../../../components/loader";
+import { useLoadingStore } from "../../../../store/admin/loadingStore";
 
 export default function AdminForgotPassword() {
   const { resetPassword } = useAuth();

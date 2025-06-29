@@ -3,10 +3,13 @@ import { ADMIN_NAV_ITEMS } from "../../constants";
 import { NavLink } from "react-router-dom";
 
 import logo from "../../assets/admin-class-notifier-logo.png";
-import { useAuthStore } from "../../store/authStore";
+import { useAuthStore } from "../../store/admin/authStore";
+import { useAuth } from "../../hooks/admin/useAuth";
 
 export default function AdminNav() {
-  const {userData} = useAuthStore()
+  const { userData } = useAuthStore();
+  const { logout } = useAuth();
+
   const navItemsElements = ADMIN_NAV_ITEMS.map((navItem) => {
     const Icon = navItem.icon;
     return (
@@ -52,13 +55,18 @@ export default function AdminNav() {
         <hr className="border border-gray-300" />
         <div className="flex items-center gap-3">
           <div className="flex items-center p-1 px-2 gap-2 rounded-sm">
-            <div className="size-[50px] rounded-full bg-black/20" />
+            <div className="size-[50px] rounded-full bg-black/15" />
             <div className="flex flex-col">
               <p className="font-medium poppins">{userData?.name}</p>
               <p className="montserrat text-[10px]">{userData?.email}</p>
             </div>
           </div>
-          <TbLogout size={25} />
+          <p
+            className="p-1.5 rounded-md hover:bg-black/10 cursor-pointer"
+            onClick={() => logout()}
+          >
+            <TbLogout size={30} />
+          </p>
         </div>
       </div>
     </div>

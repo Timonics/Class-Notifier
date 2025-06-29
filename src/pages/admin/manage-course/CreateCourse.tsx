@@ -2,20 +2,20 @@ import { TbHome, TbTrash, TbUser, TbX } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { ChangeEvent, useEffect, useState } from "react";
 import { MdKeyboardArrowDown } from "react-icons/md";
-import { useInstitution } from "../../../hooks/useInstitution";
-import { useProgram } from "../../../hooks/useProgram";
-import { useDepartment } from "../../../hooks/useDepartment";
-import { useInstitutionStore } from "../../../store/institutionStore";
-import { useProgramStore } from "../../../store/programStore";
-import { useDepartmentStore } from "../../../store/departmentStore";
-import { useLecturer } from "../../../hooks/useLecturer";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
-import { useLecturerStore } from "../../../store/lecturerStore";
-import { useCourses } from "../../../hooks/useCourses";
+import { useInstitution } from "../../../hooks/admin/useInstitution";
+import { useProgram } from "../../../hooks/admin/useProgram";
+import { useDepartment } from "../../../hooks/admin/useDepartment";
+import { useInstitutionStore } from "../../../store/admin/institutionStore";
+import { useProgramStore } from "../../../store/admin/programStore";
+import { useDepartmentStore } from "../../../store/admin/departmentStore";
+import { useLecturer } from "../../../hooks/admin/useLecturer";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
+import { useLecturerStore } from "../../../store/admin/lecturerStore";
+import { useCourses } from "../../../hooks/admin/useCourses";
 import { CiPlane } from "react-icons/ci";
-import { Course } from "../../../interfaces/course.interfaces";
-import { AssignLecturer } from "../../../interfaces/lecturer.interfaces";
+import { Course } from "../../../interfaces/admin/course.interfaces";
+import { AssignLecturer } from "../../../interfaces/admin/lecturer.interfaces";
 
 export default function CreateCourse() {
   const { getInstitutions } = useInstitution();
@@ -83,7 +83,7 @@ export default function CreateCourse() {
 
   return (
     <div
-      className="w-[400px] h-full overflow-auto p-4 rounded-lg bg-white shadow-2xl flex flex-col gap-4 relative"
+      className="w-[400px] h-full overflow-auto scrollbar p-4 rounded-lg bg-white shadow-2xl flex flex-col gap-4 relative"
       onClick={() => {
         if (institutionIsOpen) setInstitutionIsOpen(false);
         if (departmentIsOpen) setDepartmentIsOpen(false);
@@ -152,7 +152,7 @@ export default function CreateCourse() {
                     </ul>
                   ) : (
                     <div className="border-2 h-[110px] rounded-lg bg-white border-gray-200 z-20 absolute top-[40px] left-0 w-full flex justify-center items-center">
-                      {isLoading && <Loading />}
+                      {isLoading && <Loader />}
                       <p className="font-bold">
                         Add institution before prroceeding...
                       </p>
@@ -198,7 +198,7 @@ export default function CreateCourse() {
                     </ul>
                   ) : (
                     <div className="border-2 h-[110px] rounded-lg bg-white border-gray-200 z-20 absolute top-[40px] left-0 w-full flex justify-center items-center">
-                      {isLoading && <Loading />}
+                      {isLoading && <Loader />}
                       <p className="font-bold">
                         Add department before prroceeding...
                       </p>
@@ -242,7 +242,7 @@ export default function CreateCourse() {
                     </ul>
                   ) : (
                     <div className="border-2 h-[110px] rounded-lg bg-white border-gray-200 z-20 absolute top-[40px] left-0 w-full flex justify-center items-center">
-                      {isLoading && <Loading />}
+                      {isLoading && <Loader />}
                       <p className="font-bold">
                         Add institution before prroceeding...
                       </p>
@@ -259,7 +259,7 @@ export default function CreateCourse() {
               lecturerElements
             ) : (
               <div className="mt-10">
-                <Loading />
+                <Loader />
               </div>
             )}
           </div>

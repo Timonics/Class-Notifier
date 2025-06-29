@@ -1,9 +1,9 @@
 import { TbX, TbEdit, TbTrash } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
 import { ChangeEvent, useState } from "react";
-import { useDepartment } from "../../../hooks/useDepartment";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
+import { useDepartment } from "../../../hooks/admin/useDepartment";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 
 export default function EditDepartment({
   departmentId,
@@ -61,7 +61,11 @@ export default function EditDepartment({
           <p className="text-[10px] font-medium">Publish</p>
         </button>
       </div>
-      {isLoading && <div className="bg-black/30 z-30 absolute inset-0"><Loading /></div>}
+      {isLoading && (
+        <div className="bg-black/30 z-30 absolute inset-0">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 }

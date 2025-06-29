@@ -3,10 +3,14 @@ import { MdKeyboardArrowDown } from "react-icons/md";
 import { TbAnchor, TbSearch } from "react-icons/tb";
 import { NavLink, Outlet } from "react-router-dom";
 import { institutionType } from "../../../constants/institutionType";
+import { useInstitutionStore } from "../../../store/admin/institutionStore";
 
 export default function Institution() {
+  const { setInstitutionSearchTerm, setFilterSelected, institutionSearchTerm } =
+    useInstitutionStore();
   const [institutionTypeIsOpen, setInstitutionTypeIsOpen] = useState(false);
   const [selectedInstitutionType, setSelectedInstitutionType] = useState("");
+
   const navElements = institutionType.map((item) => (
     <NavLink
       end
@@ -39,7 +43,10 @@ export default function Institution() {
             <TbSearch className="h-full w-[20px] text-sm text-black/30" />
             <input
               placeholder="Search"
-              className="w-[150px] xl:w-[170px] h-[40px] outline-none placeholder:text-sm placeholder:font-medium"
+              className="w-full pr-4 h-[40px] outline-none placeholder:text-sm placeholder:font-medium"
+              name="institutionSearchTerm"
+              value={institutionSearchTerm!}
+              onChange={(event) => setInstitutionSearchTerm(event.target.value)}
             />
           </div>
         </div>
@@ -65,6 +72,7 @@ export default function Institution() {
                       className={`p-2 text-[13px] text-[#404040] cursor-pointer border-b border-[#97979786]`}
                       onClick={() => {
                         setSelectedInstitutionType(institution.name);
+                        setFilterSelected(institution.name);
                       }}
                     >
                       {institution.name}

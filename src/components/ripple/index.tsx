@@ -1,8 +1,8 @@
 const Ripple: React.FC = () => {
   return (
     <div className="absolute -translate-x-35 -translate-y-26">
-      <div className="flex justify-center items-center ">
-        <div className="size-[320px] rounded-full flex items-center justify-center border-gray-5  00">
+      <div className="flex justify-center items-center">
+        <div className="size-[320px] rounded-full flex items-center justify-center border-gray-500">
           <div className="border size-[270px] rounded-full flex items-center justify-center border-gray-400">
             <div className="border size-[220px] rounded-full flex items-center justify-center border-gray-400">
               <div className="border size-[170px] rounded-full flex items-center justify-center border-gray-300">

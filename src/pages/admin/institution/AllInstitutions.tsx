@@ -1,15 +1,16 @@
 import { TbEdit, TbEye, TbPlus, TbTrash } from "react-icons/tb";
-import { useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import CreateNewInstitution from "./CreateNewInstitution";
-import { useInstitutionStore } from "../../../store/institutionStore";
-import Loading from "../../../components/loading";
-import { useLoadingStore } from "../../../store/loadingStore";
-import { useInstitution } from "../../../hooks/useInstitution";
+import { useInstitutionStore } from "../../../store/admin/institutionStore";
+import Loader from "../../../components/loader";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
+import { useInstitution } from "../../../hooks/admin/useInstitution";
 import DeleteModal from "../../../components/delete-modal";
 
 export default function AllInstitutions() {
   const { isLoading } = useLoadingStore();
-  const { institutionData } = useInstitutionStore();
+  const { institutionData, institutionSearchTerm, filterSelected } =
+    useInstitutionStore();
   const { getInstitutions, deleteInstitution } = useInstitution();
   const [createNewInstitutionIsOpen, setCreateNewInstitutionIsOpen] =
     useState(false);
@@ -19,44 +20,70 @@ export default function AllInstitutions() {
   const [selectedInstitutionId, setSelectedInstitutionId] = useState<number>();
 
   useEffect(() => {
-    getInstitutions();
-  }, []);
+    getInstitutions(), [];
+  });
 
-  const dataElements =
-    institutionData.length !== 0 ? (
-      institutionData.map((data) => (
-        <div className="border-b-2 font-medium text-[10px] border-gray-200 grid grid-cols-12 p-3">
-          <div className="text-gray-950">{data.id}</div>
-          <div className="text-blue-700 col-span-3">{data.name}</div>
-          <div className="text-blue-700 col-span-2">{data.institutionType}</div>
-          <div className="text-blue-700">{data.departmentCount}</div>
-          <div className="text-blue-700">{data.programCount}</div>
-          <div className="text-blue-700">{data.courseCount}</div>
-          <button className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-blue-500 flex items-center justify-end text-gray-600">
-            <TbEdit size={20} />
-          </button>
-          <div className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-purple-800 flex items-center justify-end text-gray-600">
-            <TbEye size={20} />
-          </div>
-          <button
-            onClick={() => {
-              setInstitutionName(data.name);
-              setSelectedInstitutionId(data.id);
-              setShowDeleteInstitutionIsOpen(true);
-            }}
-            className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-red-500 flex items-center justify-end text-gray-600"
-          >
-            <TbTrash size={20} />
-          </button>
+  const filteredElements =
+    filterSelected === "All"
+      ? institutionData
+      : institutionData.filter(
+          (data) => data.institutionType == filterSelected
+        );
+
+  const baseElements = filterSelected
+    ? institutionSearchTerm
+      ? filteredElements.filter((instituiton) =>
+          instituiton.name
+            .toLowerCase()
+            .includes(institutionSearchTerm.toLowerCase())
+        )
+      : filteredElements
+    : institutionSearchTerm
+    ? institutionData.filter((instituiton) =>
+        instituiton.name
+          .toLowerCase()
+          .includes(institutionSearchTerm.toLowerCase())
+      )
+    : institutionData;
+
+  const dataElements = baseElements.length ? (
+    baseElements.map((data) => (
+      <div className="border-b-2 font-medium text-[10px] border-gray-200 grid grid-cols-12 p-3 items-center">
+        <div className="text-gray-950">{data.id}</div>
+        <div className="text-blue-700 col-span-3">{data.name}</div>
+        <div className="text-blue-700 col-span-2">{data.institutionType}</div>
+        <div className="text-blue-700">{data.departmentCount}</div>
+        <div className="text-blue-700">{data.programCount}</div>
+        <div className="text-blue-700">{data.courseCount}</div>
+        <button className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-blue-500 flex items-center justify-end text-gray-600">
+          <TbEdit size={20} />
+        </button>
+        <div className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-purple-800 flex items-center justify-end text-gray-600">
+          <TbEye size={20} />
         </div>
-      ))
-    ) : (
-      <div className=" h-[200px] flex justify-center items-center">
-        <p className="text-2xl font-bold text-gray-700 poppins">
-          Add Institution to view
-        </p>
+        <button
+          onClick={() => {
+            setInstitutionName(data.name);
+            setSelectedInstitutionId(data.id);
+            setShowDeleteInstitutionIsOpen(true);
+          }}
+          className="hover:bg-gray-100 p-1.5 rounded-full w-fit ml-auto cursor-pointer transition ease-in-out duration-300 hover:text-red-500 flex items-center justify-end text-gray-600"
+        >
+          <TbTrash size={20} />
+        </button>
       </div>
-    );
+    ))
+  ) : (
+    <div className=" h-[200px] flex justify-center items-center">
+      <p className="text-2xl font-bold text-gray-700 poppins">
+        {filterSelected === "All"
+          ? !baseElements.length
+            ? "No Data found"
+            : "Add Institution to view"
+          : `No ${filterSelected} Found`}
+      </p>
+    </div>
+  );
 
   return (
     <div className="flex flex-col gap-4">
@@ -85,7 +112,7 @@ export default function AllInstitutions() {
           <p />
         </div>
         <div className="gap-2 relative">
-          {isLoading && <Loading />}
+          {isLoading && <Loader />}
           {dataElements}
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { createContext, FC, useState } from "react";
 import { AppProp } from "../interfaces";
-import { CourseContextProps, CoursesState } from "../interfaces/course.interfaces";
+import { CourseContextProps, CoursesState } from "../interfaces/admin/course.interfaces";
 
 export const CourseContext = createContext<CoursesState | null>(null);
 

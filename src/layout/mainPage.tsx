@@ -1,18 +1,12 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import Nav from "../components/nav";
 import FooterNav from "../components/footer-nav";
-import { useEffect } from "react";
-import { useAuthStore } from "../store/authStore";
+import { useStudentAuthStore } from "../store/student/studentAuthStore";
 
 export default function MainPageLayout() {
-  const { setIsAuthenticated } = useAuthStore();
+  const { studentIsAuthenticated } = useStudentAuthStore();
 
-  //testing purposes
-  useEffect(() => {
-    setIsAuthenticated(true);
-  }, []);
-
-  return (
+  return studentIsAuthenticated ? (
     <div className="p-4 max-w-lg max-sm:w-full mx-auto min-h-screen flex flex-col items-center gap-5">
       <div className="w-full">
         <Nav />
@@ -20,5 +14,7 @@ export default function MainPageLayout() {
       <Outlet />
       <FooterNav />
     </div>
+  ) : (
+    <Navigate to={"/auth"} />
   );
 }

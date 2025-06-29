@@ -1,12 +1,12 @@
 import { TbHome, TbTrash, TbX } from "react-icons/tb";
 import Ripple from "../../../components/ripple";
-import { useProgramStore } from "../../../store/programStore";
+import { useProgramStore } from "../../../store/admin/programStore";
 import { ChangeEvent, useEffect, useState } from "react";
-import { useDepartment } from "../../../hooks/useDepartment";
-import { useProgram } from "../../../hooks/useProgram";
-import { useDepartmentStore } from "../../../store/departmentStore";
+import { useDepartment } from "../../../hooks/admin/useDepartment";
+import { useProgram } from "../../../hooks/admin/useProgram";
+import { useDepartmentStore } from "../../../store/admin/departmentStore";
 import { FaSpinner } from "react-icons/fa";
-import { useLoadingStore } from "../../../store/loadingStore";
+import { useLoadingStore } from "../../../store/admin/loadingStore";
 import { RiSendPlaneFill } from "react-icons/ri";
 
 export default function CreateNewProgram({
