@@ -5,11 +5,6 @@ export const announcements = [
       "The school authority has announce the new update regarding the matriculation The school authority has announce the new update regarding the matriculation",
   },
   {
-    type: "Department Announcement",
-    announcement:
-      "The school authority has announce the new update regarding the matriculation The school authority has announce the new update regarding the matriculation",
-  },
-  {
     type: "General Announcement",
     announcement:
       "The school authority has announce the new update regarding the matriculation The school authority has announce the new update regarding the matriculation",
